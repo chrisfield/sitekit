@@ -1,11 +1,21 @@
 import Slider from '../components/slider';
 import Slide from '../components/slide';
-import ImageCard from '../components/image-card';
+import createImageCard from '../components/create-image-card';
+
+const dimensions = {
+  height:'100vh - 10px', 
+  width:'100vw - 10px'
+};
+
+const ImageCard = createImageCard({
+  ...dimensions,
+  textHeight: '3em'
+}); 
 
 export default () => {
   return (
     <div className="sliderWrap">
-      <Slider height="100vh - 10px" width="100vw - 10px">
+      <Slider {...dimensions}>
         <Slide>
           <ImageCard src="http://www.angelasidwell.com/images/ghost.jpg">
             <p>This is the first <em>image</em></p>

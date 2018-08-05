@@ -1,12 +1,7 @@
 export default (props) => {
   return (
     <div className="slide">
-      {
-        React.cloneElement(props.children, {
-          height: `${props.height}`,
-          width: `${props.width}`                  
-        })
-      }
+      {props.children}
       <style jsx> {`
         .slide {
           height: calc(${props.height});
