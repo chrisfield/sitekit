@@ -2,7 +2,7 @@ const createImageCard = ({height, width, textHeight}) => {
   const imageCard = (props) => {
     return (
       <div className="imageCard">
-        <img src={props.src} alt=""/>
+        <img src={props.src} alt={props.alt}/>
         <div className="children">{props.children}</div>
         <style jsx> {`
           .imageCard {
@@ -19,7 +19,6 @@ const createImageCard = ({height, width, textHeight}) => {
             box-sizing: border-box;
             height: ${textHeight};
             overflow: auto;
-            line-height: initial;
           }
         `}
         </style>      

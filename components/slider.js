@@ -7,13 +7,7 @@ class Slider extends PureComponent {
     return (
       <div className="slider">
         <div className="sliderView">
-          {this.props.children.map((child, index) => (
-            React.cloneElement(child, {
-              key: index,
-              height: `${height}`,
-              width: `${width}`                  
-            })
-          ))}
+          {this.props.children}
         </div>
         <a>-</a>
         <a>+</a>

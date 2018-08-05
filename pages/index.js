@@ -1,5 +1,4 @@
 import Slider from '../components/slider';
-import Slide from '../components/slide';
 import createImageCard from '../components/create-image-card';
 
 const dimensions = {
@@ -16,20 +15,12 @@ export default () => {
   return (
     <div className="sliderWrap">
       <Slider {...dimensions}>
-        <Slide>
-          <ImageCard src="http://www.angelasidwell.com/images/ghost.jpg">
-            <p>This is the first <em>image</em></p>
-          </ImageCard>
-        </Slide>
-        <Slide>
-          <ImageCard src="http://www.angelasidwell.com/images/fox.jpg" alt=""/>
-        </Slide>
-        <Slide>
-          <ImageCard src="http://www.angelasidwell.com/images/fox-track.jpg" alt=""/>
-        </Slide>
-        <Slide>
-          <ImageCard src="http://www.angelasidwell.com/images/crossing-point-detail.jpg" alt=""/>
-        </Slide>
+        <ImageCard src="http://www.angelasidwell.com/images/ghost.jpg">
+          <p>This is the first <em>image</em></p>
+        </ImageCard>
+        <ImageCard src="http://www.angelasidwell.com/images/fox.jpg" alt=""/>
+        <ImageCard src="http://www.angelasidwell.com/images/fox-track.jpg" alt=""/>
+        <ImageCard src="http://www.angelasidwell.com/images/crossing-point-detail.jpg" alt=""/>
       </Slider>
       <style jsx> {`
         .sliderWrap {
