@@ -1,26 +1,28 @@
 import Slider from '../components/slider';
-import createImageCard from '../components/create-image-card';
+import withFixedProps from '../components/with-fixed-props';
+import ImageCard from '../components/image-card';
+
 
 const dimensions = {
   height:'100vh - 10px', 
   width:'100vw - 10px'
 };
 
-const ImageCard = createImageCard({
+const ImageCardSlide = withFixedProps({
   ...dimensions,
   textHeight: '3em'
-}); 
+})(ImageCard);
 
 export default () => {
   return (
     <div className="sliderWrap">
       <Slider {...dimensions}>
-        <ImageCard src="http://www.angelasidwell.com/images/ghost.jpg">
+        <ImageCardSlide src="http://www.angelasidwell.com/images/ghost.jpg">
           <p>This is the first <em>image</em></p>
-        </ImageCard>
-        <ImageCard src="http://www.angelasidwell.com/images/fox.jpg" alt=""/>
-        <ImageCard src="http://www.angelasidwell.com/images/fox-track.jpg" alt=""/>
-        <ImageCard src="http://www.angelasidwell.com/images/crossing-point-detail.jpg" alt=""/>
+        </ImageCardSlide>
+        <ImageCardSlide src="http://www.angelasidwell.com/images/fox.jpg" alt=""/>
+        <ImageCardSlide src="http://www.angelasidwell.com/images/fox-track.jpg" alt=""/>
+        <ImageCardSlide src="http://www.angelasidwell.com/images/crossing-point-detail.jpg" alt=""/>
       </Slider>
       <style jsx> {`
         .sliderWrap {
