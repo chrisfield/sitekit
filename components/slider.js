@@ -79,14 +79,14 @@ class Slider extends PureComponent {
           .sliderView {
             display: flex;
             width: 100%;
-            verticle-align: center;
+            align-items: center;
             transform: translate(-${slideIndex * 100}%, 0);
             transition: transform ${isSmoothTransform? '.25s': '0s'} ease-out;
           }
 
           .slide {
-            box-sizing: boarder-box;
-            min-width: calc(${width});
+            box-sizing: border-box;
+            flex: 0 0 calc(${width});
           }
 
           .previous, .next {
