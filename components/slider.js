@@ -10,13 +10,21 @@ class Slider extends PureComponent {
     this.next = this.next.bind(this);
     this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
     this.setSliderViewElement = this.setSliderViewElement.bind(this);
+    this.startTimer = this.startTimer.bind(this);
   }
 
   componentDidMount() {
-    new HorrizontalSwipeListener(this.SliderViewElement, this.next, this.previous)
+    new HorrizontalSwipeListener(this.SliderViewElement, this.next, this.previous);
+    this.startTimer();
+  }
+
+  startTimer() {
+    clearInterval(this.timer);
+    this.timer = setInterval(this.next, 3000);
   }
 
   previous() {
+    this.startTimer();
     this.setState(state => {
       if (state.slideIndex === 0) {
         return Slider.slideTo(this.props.children.length);
@@ -26,6 +34,7 @@ class Slider extends PureComponent {
   }
 
   next() {
+    this.startTimer();
     this.setState(state => {
       if (state.slideIndex === this.props.children.length + 1) {
         return Slider.slideTo(1);
