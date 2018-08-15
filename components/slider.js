@@ -1,4 +1,5 @@
 import { PureComponent } from 'react';
+import HorrizontalSwipeListener from './horrizontal-swipe-listener';
 
 class Slider extends PureComponent {
 
@@ -7,7 +8,12 @@ class Slider extends PureComponent {
     this.state = Slider.slideTo(1);
     this.previous = this.previous.bind(this);
     this.next = this.next.bind(this);
-    this.handleTransitionEnd = this.handleTransitionEnd.bind(this)
+    this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
+    this.setSliderViewElement = this.setSliderViewElement.bind(this);
+  }
+
+  componentDidMount() {
+    new HorrizontalSwipeListener(this.SliderViewElement, this.next, this.previous)
   }
 
   previous() {
@@ -46,6 +52,10 @@ class Slider extends PureComponent {
     });
   }
 
+  setSliderViewElement(ref) {
+    this.SliderViewElement = ref;
+  }
+
   render() {
     const height = this.props.height;
     const width = this.props.width;
@@ -57,7 +67,7 @@ class Slider extends PureComponent {
     slides.unshift(lastSlide);
     return (
       <div className="slider">
-        <div className="sliderView" onTransitionEnd={this.handleTransitionEnd}>
+        <div className="sliderView" ref={this.setSliderViewElement} onTransitionEnd={this.handleTransitionEnd}>
           {slides.map((slide, index) => (
             <div key={index} className="slide">
               {slide}
