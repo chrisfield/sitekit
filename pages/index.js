@@ -4,12 +4,12 @@ import ImageCard from '../components/image-card';
 
 
 const dimensions = {
-  height:'100vh - 10px', 
   width:'100vw - 10px'
 };
 
 const ImageCardSlide = withFixedProps({
-  ...dimensions,
+  width:'100vw - 10px',
+  height:'90vh - 10px', 
   textHeight: '3em'
 })(ImageCard);
 

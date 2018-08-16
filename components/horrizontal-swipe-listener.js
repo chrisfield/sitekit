@@ -10,18 +10,17 @@ export default class HorrizontalSwipeListener {
   }
 
   swipeStart(e) {
-    e = e ? e : window.event;
-    e = ('changedTouches' in e)? e.changedTouches[0] : e;
-    this.touchStartCoords = {x: e.pageX, y: e.pageY};
+    e.preventDefault();
+    const eInfo = ('changedTouches' in e)? e.changedTouches[0] : e;
+    this.touchStartCoords = {x: eInfo.pageX, y: eInfo.pageY};
     this.startTime = new Date().getTime();
   }
   
   swipeEnd(e) {
-    e = e? e: window.event;
-    e = ('changedTouches' in e)? e.changedTouches[0]: e;
+    const eInfo = ('changedTouches' in e)? e.changedTouches[0]: e;
     const elapsedTime = new Date().getTime() - this.startTime;
     if (elapsedTime <= maxAllowedTime){
-      const touchEndCoords = {'x':e.pageX - this.touchStartCoords.x, 'y':e.pageY - this.touchStartCoords.y};
+      const touchEndCoords = {x: eInfo.pageX - this.touchStartCoords.x, y: eInfo.pageY - this.touchStartCoords.y};
       if (Math.abs(touchEndCoords.x) >= minDistanceXAxis && Math.abs(touchEndCoords.y) <= maxDistanceYAxis){
         const callback = (touchEndCoords.x < 0)? this.leftCallback : this.rightCallback;
         callback(e);
@@ -35,7 +34,6 @@ const maxDistanceYAxis = 30;
 const maxAllowedTime = 1000;
 
 const swipeMove = e => {
-  e = e ? e : window.event;
   e.preventDefault();
 };
 

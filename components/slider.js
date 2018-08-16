@@ -85,13 +85,20 @@ class Slider extends PureComponent {
         </div>
         <a className="previous" onClick={this.previous}>&#10094;</a>
         <a className="next" onClick={this.next}>&#10095;</a>
+        <div className="bullets">
+          {this.props.children.map((_, index) => (
+            <span key={index} className="bullet">
+              {index + 1 === slideIndex? 'x': 'o'}
+            </span>
+          ))}
+        </div>
         <style jsx>{`
           .slider {
             box-sizing: border-box;
             width: calc(${width});
             height: calc(${height});
             margin: auto;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
           }
 
@@ -130,6 +137,11 @@ class Slider extends PureComponent {
 
           .previous:hover, .next:hover {
             background-color: rgba(0,0,0,0.8);
+          }
+
+          .bullets {
+            display: inline-block;
+            height: 60px;
           }
 
         `}
