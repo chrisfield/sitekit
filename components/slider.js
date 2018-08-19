@@ -115,7 +115,7 @@ class Slider extends PureComponent {
             box-sizing: border-box;
             width: calc(${width});
             margin: auto;
-            overflow-x: hidden;
+            overflow: hidden;
             position: relative;
           }
 

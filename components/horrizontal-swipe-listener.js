@@ -5,12 +5,12 @@ export default class HorrizontalSwipeListener {
     this.swipeStart = this.swipeStart.bind(this);
     this.swipeEnd = this.swipeEnd.bind(this);
     addMultipleListeners(element, 'mousedown touchstart', this.swipeStart);
-    addMultipleListeners(element, 'mousemove touchmove', swipeMove);
+    element.addEventListener('mousemove', swipeMove);
     addMultipleListeners(element, 'mouseup touchend', this.swipeEnd);
   }
 
   swipeStart(e) {
-    e.preventDefault();
+    // e.preventDefault();
     const eInfo = ('changedTouches' in e)? e.changedTouches[0] : e;
     this.touchStartCoords = {x: eInfo.pageX, y: eInfo.pageY};
     this.startTime = new Date().getTime();
