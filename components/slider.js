@@ -37,7 +37,6 @@ class Slider extends PureComponent {
   previous(e) {
     if (e) {
       e.preventDefault();
-      e.stopImmediatePropagation();
     }
     this.startTimer();
     this.setState(state => {
@@ -51,7 +50,6 @@ class Slider extends PureComponent {
   next(e) {
     if (e) {
       e.preventDefault();
-      e.stopImmediatePropagation();
     }
     this.startTimer();
     this.setState(state => {
