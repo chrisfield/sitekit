@@ -11,16 +11,27 @@ class Slider extends PureComponent {
     this.handleTransitionEnd = this.handleTransitionEnd.bind(this);
     this.setSliderViewElement = this.setSliderViewElement.bind(this);
     this.startTimer = this.startTimer.bind(this);
+    this.adjustHeight = this.adjustHeight.bind(this);
   }
 
   componentDidMount() {
-    new HorrizontalSwipeListener(this.SliderViewElement, this.next, this.previous);
+    new HorrizontalSwipeListener(this.sliderViewElement, this.next, this.previous);
     this.startTimer();
+    this.adjustHeight();
+  }
+
+  componentDidUpdate() {
+    this.adjustHeight();
   }
 
   startTimer() {
     clearInterval(this.timer);
-    this.timer = setInterval(this.next, 3000);
+    this.timer = setInterval(this.next, 5000);
+  }
+
+  adjustHeight() {
+    const style = window.getComputedStyle(this.currentSlide);
+    this.sliderViewElement.style.maxHeight = `calc(${this.currentSlide.offsetHeight}px + ${style.marginTop} + ${style.marginBottom})`;
   }
 
   previous() {
@@ -62,7 +73,7 @@ class Slider extends PureComponent {
   }
 
   setSliderViewElement(ref) {
-    this.SliderViewElement = ref;
+    this.sliderViewElement = ref;
   }
 
   render() {
@@ -76,9 +87,9 @@ class Slider extends PureComponent {
     slides.unshift(lastSlide);
     return (
       <div className="slider">
-        <div className="sliderView" ref={this.setSliderViewElement} onTransitionEnd={this.handleTransitionEnd}>
+        <div className={`sliderView ${isSmoothTransform? 'sliderView-smooth': ''}`} ref={this.setSliderViewElement} onTransitionEnd={this.handleTransitionEnd}>
           {slides.map((slide, index) => (
-            <div key={index} className="slide">
+            <div key={index} ref={el => {if (index === slideIndex){this.currentSlide = el;}}}className="slide">
               {slide}
             </div>
           ))}
@@ -94,9 +105,9 @@ class Slider extends PureComponent {
         </div>
         <style jsx>{`
           .slider {
+            border: 5px solid: blue;
             box-sizing: border-box;
             width: calc(${width});
-            height: calc(${height});
             margin: auto;
             overflow-x: hidden;
             position: relative;
@@ -107,7 +118,10 @@ class Slider extends PureComponent {
             width: 100%;
             align-items: center;
             transform: translate(-${slideIndex * 100}%, 0);
-            transition: transform ${isSmoothTransform? '.25s': '0s'} ease-out;
+          }
+
+          .sliderView-smooth {
+            transition: transform 1.25s ease-out, max-height 1.25s ease-out;
           }
 
           .slide {
