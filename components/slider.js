@@ -94,8 +94,8 @@ class Slider extends PureComponent {
             </div>
           ))}
         </div>
-        <a className="previous" onClick={this.previous}>&#10094;</a>
-        <a className="next" onClick={this.next}>&#10095;</a>
+        <span className="previous" onClick={this.previous}>&#10094;</span>
+        <span className="next" onClick={this.next}>&#10095;</span>
         <div className="bullets">
           {this.props.children.map((_, index) => (
             <span key={index} className="bullet">
