@@ -34,7 +34,11 @@ class Slider extends PureComponent {
     this.sliderViewElement.style.maxHeight = `calc(${this.currentSlide.offsetHeight}px + ${style.marginTop} + ${style.marginBottom})`;
   }
 
-  previous() {
+  previous(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
     this.startTimer();
     this.setState(state => {
       if (state.slideIndex === 0) {
@@ -44,7 +48,11 @@ class Slider extends PureComponent {
     });
   }
 
-  next() {
+  next(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
     this.startTimer();
     this.setState(state => {
       if (state.slideIndex === this.props.children.length + 1) {
