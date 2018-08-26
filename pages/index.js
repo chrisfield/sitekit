@@ -4,7 +4,7 @@ import ImageCard from '../components/image-card';
 
 
 const dimensions = {
-  width:'100vw - 10px'
+  width:'100%'
 };
 
 const ImageCardSlide = withFixedProps({
