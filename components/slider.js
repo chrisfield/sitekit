@@ -195,7 +195,7 @@ class Slider extends PureComponent {
 
           .slide {
             box-sizing: border-box;
-            flex: 0 0 100%;
+            flex: 0 0 calc(${width});
           }
 
           .previous, .next {

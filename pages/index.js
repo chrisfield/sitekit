@@ -4,7 +4,7 @@ import ImageCard from '../components/image-card';
 
 
 const dimensions = {
-  width:'100%'
+  width:'100vw - 10px'
 };
 
 const ImageCardSlide = withFixedProps({
@@ -17,7 +17,9 @@ export default () => {
     <div>
       <Slider {...dimensions}>
         <ImageCardSlide src="http://www.angelasidwell.com/images/ghost.jpg"/>
-        <a href="https://www.google.com/"><ImageCardSlide src="http://www.angelasidwell.com/images/fox.jpg" alt=""/></a>
+        <a href="https://www.google.com/">
+          <ImageCardSlide src="http://www.angelasidwell.com/images/fox.jpg" alt=""/>
+        </a>
         <ImageCardSlide src="http://www.angelasidwell.com/images/fox-track.jpg" alt=""/>
         <ImageCardSlide src="http://www.angelasidwell.com/images/crossing-point-detail.jpg" alt=""/>
       </Slider>

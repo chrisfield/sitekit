@@ -11,8 +11,8 @@ const ImageCard = (props) => {
           box-sizing: border-box;
           display: inline-block;
           object-fit: contain;
-          max-height: 100%;
-          max-width: 100%;
+          max-height: calc(${props.height} - ${props.textHeight});
+          max-width: calc(${props.width});
         }
         .children {
           box-sizing: border-box;
